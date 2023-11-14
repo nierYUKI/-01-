@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ServiceManagment {
 	
-	private Integer ServiceId;
-	private String ServiceName;
+	private Integer ServiceId;//サービスNo
+	private String ServiceName;//サービス名
 
 }

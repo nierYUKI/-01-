@@ -18,8 +18,14 @@ public class DaoFactory {
 		return ds;
 	}
 	
+	//ユーザー新規登録メソッド
 	public static UserDao createUserDao() {
 		return new UserDaoImpl(getDataSource());
 	}
 
+	
+	//インシデント新規登録メソッド
+	public static IncidentManagementDao createIncidentDao() {
+		return new IncidentManagementDaoImpl(getDataSource());
+	}
 }
