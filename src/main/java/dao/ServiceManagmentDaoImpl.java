@@ -45,7 +45,7 @@ public class ServiceManagmentDaoImpl implements ServiceManagmentDao{
 		
 		private ServiceManagment MapToServiceList(ResultSet rs)throws Exception{
 			Integer ServiceId = (Integer)rs.getObject("id");
-			String ServiceName = rs.getString("name");
+			String ServiceName = rs.getString("serviceName");
 			
 			return new ServiceManagment(ServiceId,ServiceName);
 		}

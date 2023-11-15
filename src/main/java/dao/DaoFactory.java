@@ -28,4 +28,9 @@ public class DaoFactory {
 	public static IncidentManagementDao createIncidentDao() {
 		return new IncidentManagementDaoImpl(getDataSource());
 	}
+	
+	//ServiceManagmentDao インターフェースを実装したクラスのインスタンスを返す。
+	public static ServiceManagmentDao createServiceManagmentDao() {
+		return new ServiceManagmentDaoImpl(getDataSource());
+	}
 }

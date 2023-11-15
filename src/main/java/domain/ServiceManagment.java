@@ -1,10 +1,9 @@
 package domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 
 @AllArgsConstructor
-@Data
+//@Data
 public class ServiceManagment {
 	
 	private Integer ServiceId;//サービスNo

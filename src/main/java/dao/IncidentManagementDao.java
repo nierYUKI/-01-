@@ -3,12 +3,16 @@ package dao;
 import java.util.List;
 
 import domain.IncidentManagement;
+import domain.ServiceManagment;
 
 
 public interface IncidentManagementDao {
 	
 	//incidentmanagement テーブル内の全ての情報を取得する。
 	public List<IncidentManagement>findAll() throws Exception;
+	
+	//servicemanagement テーブル内の全ての情報を取得する。
+	public List<ServiceManagment>findall()throws Exception;
 	
 	//指定したid のインシデント情報を取得する。
 	public IncidentManagement findById(Integer id)throws Exception;
