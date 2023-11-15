@@ -13,13 +13,13 @@
 
 <label for="formIncident_id">インシデントID</label>
 <select  name="Incident_id" id="formIncident_id">
-<c:forEach items="${ServiceList}" var="ServiceManagment">
 
-<option value="<c:out value="${ServiceManagment.serviceId }" />">
+<c:forEach items="${ServiceList }" var="ServiceManagment">
+<option value="<c:out value="${ ServiceManagment.serviceId}"/>">
 <c:out value="${ServiceManagment.serviceName }"/>
-
 </option>
 </c:forEach>
+
 </select>
 <div></div>
 <label for="formIncident_Name">インシデント名</label>
