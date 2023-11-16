@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DaoFactory;
 import dao.IncidentManagementDao;
@@ -26,23 +27,38 @@ public class AddIncidentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		try {
-		ServiceManagmentDao serviceDao = DaoFactory.createServiceManagmentDao();
-		List<ServiceManagment>ServiceList = serviceDao.findAll();
-		request.setAttribute("ServiceList", ServiceList);
-		System.out.println(ServiceList);
-		request.getRequestDispatcher("/WEB-INF/view/addIncident.jsp").forward(request, response);
-	}catch(Exception e) {
-		throw new ServletException(e);
+
+			//インシデントIDをサービス名で表示する処理
+			ServiceManagmentDao serviceDao = DaoFactory.createServiceManagmentDao();
+			List<ServiceManagment> ServiceList = serviceDao.findAll();
+			request.setAttribute("ServiceList", ServiceList);
+			//サービス名取得確認用System.out.println(ServiceList);
+
+			//セッションからユーザー情報を取得
+			HttpSession session = request.getSession();
+			String name = (String) session.getAttribute("user");
+
+			if (name != null) {
+				// ユーザー名がセッションに存在する場合の処理
+//				response.getWriter().write("User Name: " + name);
+				request.setAttribute("name", name);
+			}
+
+			request.getRequestDispatcher("/WEB-INF/view/addIncident.jsp").forward(request, response);
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
 	}
-	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 文字化け防止
 		request.setCharacterEncoding("UTF-8");
-		
+
 		//データの追加
 		//要注意jspファイルのname属性と同じにする
 		Integer Incident_id = Integer.parseInt(request.getParameter("Incident_id"));//JSPファイルname属性と同じにする
@@ -52,27 +68,27 @@ public class AddIncidentServlet extends HttpServlet {
 		String getStatus = request.getParameter("getStatus");//JSPファイルname属性と同じにする
 
 		IncidentManagement incidentManagement = IncidentManagement.builder()
-				.InCId(Incident_id)//インシデントID
+				.incident_id(Incident_id)//インシデントID
 				.incident_Name(Incident_Name)//インシデント名
 				.incident_Content(Incident_Content)//インシデント内容
 				.supported_person_id(supported_person_id)//インシデント登録者
 				.Status(getStatus)//ステータス
 				.build();
-		
-		try {
-		incidentManagement.setInCId(Incident_id);
-		incidentManagement.setIncident_Name(Incident_Name);
-		incidentManagement.setIncident_Content(Incident_Content);
-		incidentManagement.setSupported_person_id(supported_person_id);
-		incidentManagement.setStatus(getStatus);
-		IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
-		incidentDao.insert(incidentManagement);
-		
-		//DBに登録されるのを確認する為に、新規登録画面に戻る
-		request.getRequestDispatcher("/WEB-INF/view/addIncident.jsp").forward(request, response);
-	}catch(Exception e) {
-		throw new ServletException(e);
-	}
 
-}
+		try {
+			incidentManagement.setIncident_id(Incident_id);
+			incidentManagement.setIncident_Name(Incident_Name);
+			incidentManagement.setIncident_Content(Incident_Content);
+			incidentManagement.setSupported_person_id(supported_person_id);
+			incidentManagement.setStatus(getStatus);
+			IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
+			incidentDao.insert(incidentManagement);
+
+			//DBに登録されるのを確認する為に、新規登録画面に戻る
+			request.getRequestDispatcher("/WEB-INF/view/addIncident.jsp").forward(request, response);
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
+
+	}
 }

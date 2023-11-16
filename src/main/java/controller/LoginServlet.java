@@ -41,8 +41,10 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(password);
 			UserDao userDao = DaoFactory.createUserDao();
 			User user = userDao.findByLoginAndPass(name, password);
+
 			if(user != null) {               //この1個目のuserはログインフィルターの「user」と一緒
 			request.getSession().setAttribute("user", user.getName());
+			System.out.println("1"+request.getSession().getAttribute("name"));
 			//インシデント登録ページにいく
 			response.sendRedirect("addIncident");
 			return;
