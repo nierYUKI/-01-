@@ -36,5 +36,7 @@
 <input type="submit" value="新規登録">
 </form>
 
+<a href="logout">ログアウトする</a>
+
 </body>
 </html>
