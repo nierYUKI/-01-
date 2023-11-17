@@ -36,8 +36,6 @@
 
 <label for="formsupported_person_id">${user.name}</label>
 
-
-
 <input type="hidden" name="supported_person_id" id="formsupported_person_id" value="<c:out value="${user.id}"/>">
 <input type="submit" value="新規登録">
 </form>

@@ -73,7 +73,7 @@ public class AddIncidentServlet extends HttpServlet {
 				.incident_Name(Incident_Name)//インシデント名
 				.incident_Content(Incident_Content)//インシデント内容
 				.supported_person_id(supported_person_id)//インシデント登録者
-				.Status(getStatus)//ステータス
+				.status(getStatus)//ステータス
 				.build();
 
 		try {
@@ -85,8 +85,8 @@ public class AddIncidentServlet extends HttpServlet {
 			IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
 			incidentDao.insert(incidentManagement);
 
-			//DBに登録されるのを確認する為に、新規登録画面に戻る
-			request.getRequestDispatcher("/WEB-INF/view/addIncident.jsp").forward(request, response);
+			//DBに登録されるのを確認する為に、一覧にいく
+			response.sendRedirect(request.getContextPath() + "/ListIncident");
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}

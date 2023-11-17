@@ -44,14 +44,24 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 		return new ServiceManagment(ServiceId,ServiceName);
 	}
 
-	//対応者の所属部門を取得
+	//インシデントの内容を一覧で取得
 	@Override
 	public List<IncidentManagement> findAll() throws Exception {
 		List<IncidentManagement>IncidentList = new ArrayList<>();
 		try(Connection con = ds.getConnection()){
-			String sql = " select worktable.name as worktable_name from user"
-					+ " join worktable on user.work_id = worktable.work_id"
-					+ " order by user.id ";
+			
+			String sql = " select *, user.name AS supported_person_id "
+					+ "from incidentmanagement "
+					+ "join user on incidentmanagement.id = user.id "
+					+ "ORDER BY incidentmanagement.supported_person_id"
+					;
+			
+				//String sql = "select * from incidentManagement";
+				
+			
+//			String sql = " select worktable.name as worktable_name from user"
+//					+ " join worktable on user.work_id = worktable.work_id"
+//					+ " order by user.id ";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
@@ -122,16 +132,17 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 
 	//ResultSetからIncidentManagementオブジェクトへの変換
 	private IncidentManagement mapToIncident(ResultSet rs)throws Exception{
-			Integer InCId = (Integer)rs.getObject("id");
+			Integer id = (Integer)rs.getObject("id");
 			Integer incident_id = (Integer)rs.getObject("incident_id");
-			String incident_Name = rs.getString("name");
-			String incident_Content = rs.getString("Content");
+			System.out.println(incident_id);
+			String incident_Name = rs.getString("incident_Name");
+			String incident_Content = rs.getString("incident_Content");
 			Integer supported_person_id = (Integer)rs.getObject("supported_person_id");
-			Date registered = rs.getTimestamp("registered");
-			Date update_time =rs.getTimestamp("update");
+			Date Creation_Time = rs.getTimestamp("Creation_Time");
+			Date update_time =rs.getTimestamp("update_time");
 			String Status = rs.getString("Status");
-		
-		return new IncidentManagement(InCId,incident_id,incident_Name,incident_Content,supported_person_id,registered,update_time,Status);
+		  
+		return new IncidentManagement(id,incident_id,incident_Name,incident_Content,supported_person_id,Creation_Time,update_time,Status);
 		
 	}
 

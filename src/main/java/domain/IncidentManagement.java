@@ -11,13 +11,13 @@ import lombok.Data;
 @Builder
 public class IncidentManagement {
 
-	private Integer InCId;//ID
+	private Integer id;//ID
 	private Integer incident_id;//インシデントID
 	private String incident_Name;//インシデント名
 	private String incident_Content;//インシデント内容
 	private Integer supported_person_id;//インシデント作成者のID
-	private Date Creation_Time;//インシデント作成時間
+	private Date creation_Time;//インシデント作成時間
 	private Date update_time;//インシデント更新時間
-	private String Status;//インシデントステータス(対応中、対応完了)
+	private String status;//インシデントステータス(対応中、対応完了)
 
 }

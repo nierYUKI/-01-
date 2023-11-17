@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(name);
 			System.out.println(password);
 			UserDao userDao = DaoFactory.createUserDao();
+			//Userパッケージを取得して、ユーザーの全ての情報を取得する
 			User user = userDao.findByLoginAndPass(name, password);
 
 			if (user != null) { //この1個目のuserはログインフィルターの「user」と一緒
