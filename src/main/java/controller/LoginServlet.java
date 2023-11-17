@@ -32,8 +32,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//文字化け防止
 		request.setCharacterEncoding("UTF-8");
-		
-		try {	//入力値の取得
+
+		try { //入力値の取得
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
 			//入力値の確認
@@ -42,25 +42,21 @@ public class LoginServlet extends HttpServlet {
 			UserDao userDao = DaoFactory.createUserDao();
 			User user = userDao.findByLoginAndPass(name, password);
 
-			if(user != null) {               //この1個目のuserはログインフィルターの「user」と一緒
-			request.getSession().setAttribute("user", user.getName());
-			System.out.println("1"+request.getSession().getAttribute("name"));
-			//インシデント登録ページにいく
-			response.sendRedirect("addIncident");
-			return;
-			}else {
+			if (user != null) { //この1個目のuserはログインフィルターの「user」と一緒
+				request.getSession().setAttribute("user", user);
+				//			System.out.println("1"+request.getSession().getAttribute("name"));
+				//インシデント登録ページにいく
+				response.sendRedirect("addIncident");
+				return;
+			} else {
 				//ログイン名とパスワードが間違えていたらエラーメッセージ
 				request.setAttribute("error", "ログインIDまたはパスワードが間違えています");
 				request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 			}
-			} catch (Exception e) {
-				// TODO 自動生成された catch ブロック
-				throw new ServletException(e);
-			}
-			
-
-
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			throw new ServletException(e);
 		}
+
 	}
-
-
+}

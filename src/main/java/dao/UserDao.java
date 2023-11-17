@@ -10,6 +10,6 @@ public interface UserDao {
 	//ログイン認証
 	//正しいID,Passの場合、Userを返す
 	//正しくない場合はNullを返す
-	User findByLoginAndPass(String loginId,String loginPass) throws Exception;
+	User findByLoginAndPass( String loginId,String loginPass) throws Exception;
 
 }

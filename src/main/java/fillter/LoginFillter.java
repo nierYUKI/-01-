@@ -40,7 +40,7 @@ public class LoginFillter extends HttpFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// 前処理
-		System.out.println("abc");
+//フィルター確認用		System.out.println("abc");
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();

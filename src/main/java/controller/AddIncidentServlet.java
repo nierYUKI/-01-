@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.DaoFactory;
 import dao.IncidentManagementDao;
@@ -27,7 +26,7 @@ public class AddIncidentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		try {
 
 			//インシデントIDをサービス名で表示する処理
@@ -37,14 +36,16 @@ public class AddIncidentServlet extends HttpServlet {
 			//サービス名取得確認用System.out.println(ServiceList);
 
 			//セッションからユーザー情報を取得
-			HttpSession session = request.getSession();
-			String name = (String) session.getAttribute("user");
+//			HttpSession session = request.getSession();
+//			User user = (User) session.getAttribute("user");
 
-			if (name != null) {
+//			if (user != null) {
 				// ユーザー名がセッションに存在する場合の処理
 //				response.getWriter().write("User Name: " + name);
-				request.setAttribute("name", name);
-			}
+//				request.setAttribute("name", name);
+//				request.setAttribute("id", id);
+//				System.out.println(id);
+//			}
 
 			request.getRequestDispatcher("/WEB-INF/view/addIncident.jsp").forward(request, response);
 		} catch (Exception e) {

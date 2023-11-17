@@ -37,7 +37,7 @@
 <label for="formsupported_person_id">対応者</label>
 
 
-<c:out value="${name}" />
+<c:out value="${user.name}" />
 <input type="hidden" name="supported_person_id" id="formsupported_person_id" value="<c:out value="${IncidentManagement.supported_person_id}"/>">
 <input type="submit" value="新規登録">
 </form>
