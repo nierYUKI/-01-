@@ -51,9 +51,8 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 		try(Connection con = ds.getConnection()){
 			
 			String sql = " select *, user.name AS supported_person_id "
-					+ "from incidentmanagement "
-					+ "join user on incidentmanagement.id = user.id "
-					+ "ORDER BY incidentmanagement.supported_person_id"
+					+ " from incidentmanagement"
+					+ " join user on incidentmanagement.supported_person_id = user.id "
 					;
 			
 				//String sql = "select * from incidentManagement";
@@ -141,8 +140,9 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 			Date Creation_Time = rs.getTimestamp("Creation_Time");
 			Date update_time =rs.getTimestamp("update_time");
 			String Status = rs.getString("Status");
+			String user_name = rs.getString("user.name");
 		  
-		return new IncidentManagement(id,incident_id,incident_Name,incident_Content,supported_person_id,Creation_Time,update_time,Status);
+		return new IncidentManagement(id,incident_id,incident_Name,incident_Content,supported_person_id,Creation_Time,update_time,Status,user_name);
 		
 	}
 

@@ -27,7 +27,7 @@
           <td><c:out value="${IncidentManagement.incident_id}" /></td>
           <td><c:out value="${IncidentManagement.incident_Name}" /></td>
           <td><c:out value="${IncidentManagement.incident_Content}" /></td>
-          <td><c:out value="${IncidentManagement.supported_person_id}" /></td>
+          <td><c:out value="${IncidentManagement.user_name}" /></td>
 
           <td><fmt:formatDate value="${IncidentManagement.creation_Time}" pattern="y年MM月dd日 HH:mm:ss" /></td>
           <td><fmt:formatDate value="${IncidentManagement.update_time}" pattern="y年MM月dd日 HH:mm:ss" /></td>

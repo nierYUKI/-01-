@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DaoFactory;
 import dao.IncidentManagementDao;
+import dao.UserDao;
 import domain.IncidentManagement;
+import domain.User;
 
 /**
  * Servlet implementation class ListIncidentServlet
@@ -25,11 +27,15 @@ public class ListIncidentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			
+		UserDao userDao = DaoFactory.createUserDao();
+		List<User>UserList = userDao.findAll();
+		request.setAttribute("UserList", UserList);
+		System.out.println(UserList);
 		IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
 			List<IncidentManagement>IncidentList = incidentDao.findAll();
 			request.setAttribute("IncidentList", IncidentList);
-			//IncidentListの取得確認System.out.println(IncidentList);
+		//IncidentListの取得確認
+			//System.out.println(IncidentList);
 			request.getRequestDispatcher("/WEB-INF/view/ListIncident.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック

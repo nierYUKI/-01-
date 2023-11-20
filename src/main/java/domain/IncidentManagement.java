@@ -19,5 +19,10 @@ public class IncidentManagement {
 	private Date creation_Time;//インシデント作成時間
 	private Date update_time;//インシデント更新時間
 	private String status;//インシデントステータス(対応中、対応完了)
+	private String user_name;//インシデント作成者名をJSPで表示させる為に追加 
+	//Userの全ての情報が必要なら以下の情報でおｋ
+	//private User user;
+	//private String IncidentId_Name;//インシデントID名をJSPで表示させる為に追加
+	
 
 }

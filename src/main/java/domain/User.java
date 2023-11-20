@@ -13,6 +13,6 @@ public class User {
 	private Integer id; //社員ID
 	private String name;//名前(ログイン)
 	private String password;//パスワード(ログイン)
-	private String workId;//(所属部門)
+	private String work_id;//(所属部門)
 	
 }

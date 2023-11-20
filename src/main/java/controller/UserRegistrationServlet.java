@@ -33,7 +33,7 @@ public class UserRegistrationServlet extends HttpServlet {
 		//文字化け防止
 		request.setCharacterEncoding("UTF-8");
 		
-		//入力値の取得
+		//入力値の取得確認
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		String workId = request.getParameter("workId");
