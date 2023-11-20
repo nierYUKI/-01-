@@ -36,9 +36,9 @@ public class LoginServlet extends HttpServlet {
 		try { //入力値の取得
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
-			//入力値の確認
-			System.out.println(name);
-			System.out.println(password);
+			//入力値の確認用
+			//System.out.println(name);
+			//System.out.println(password);
 			UserDao userDao = DaoFactory.createUserDao();
 			//Userパッケージを取得して、ユーザーの全ての情報を取得する
 			User user = userDao.findByLoginAndPass(name, password);
@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 				request.getSession().setAttribute("user", user);
 				//			System.out.println("1"+request.getSession().getAttribute("name"));
 				//インシデント登録ページにいく
-				response.sendRedirect("addIncident");
+				response.sendRedirect("ListIncident");
 				return;
 			} else {
 				//ログイン名とパスワードが間違えていたらエラーメッセージ

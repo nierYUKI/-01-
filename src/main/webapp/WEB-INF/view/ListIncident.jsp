@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1>インシデント一覧</h1>
+<h2><a href="addIncident">インシデント新規登録</a></h2>
 <table border="1">
 <tr>
 	<th>ID</th>

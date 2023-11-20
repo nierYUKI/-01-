@@ -29,7 +29,7 @@ public class ListIncidentServlet extends HttpServlet {
 		IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
 			List<IncidentManagement>IncidentList = incidentDao.findAll();
 			request.setAttribute("IncidentList", IncidentList);
-			System.out.println(IncidentList);
+			//IncidentListの取得確認System.out.println(IncidentList);
 			request.getRequestDispatcher("/WEB-INF/view/ListIncident.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
