@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,12 +75,38 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 		return IncidentList;
 	}
 
+	
 	@Override
 	public IncidentManagement findById(Integer id) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		// データ1件分を取得する
+		// 編集するインシデント内容を取得
+		IncidentManagement incident = null;
+		
+		try(Connection con = ds.getConnection()){
+			String sql = " select *, user.name AS supported_person_id "
+					+ " from incidentmanagement "
+					+ " join user on incidentmanagement.supported_person_id = user.id "
+					+ " join servicemanagement on incidentmanagement.incident_id = servicemanagement.id "
+					+ " where incidentmanagement.id=?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setObject(1,id,Types.INTEGER);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next() == true) {
+				incident = mapToIncident(rs);
+			}
+		}catch(Exception e) {
+			
+		}
+		return incident;
 	}
 	
+	/*
+	 * ResultSetからIncidentManagementオブジェクトへの変換
+	 */
+	
+//	private IncidentManagement mapToIncident(ResultSet rs)throws Exception{
+//		
+//	}
 	
 	//インシデント内容をデータベースに挿入するメソッド
 	@Override
@@ -99,11 +126,12 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
                 + " creation_time,"
                 + " status)"
 			 + " values(?,?,?,?,NOW(),?)";
-			System.out.println(IncidentManagement.getIncident_id());
-			System.out.println(IncidentManagement.getIncident_Name());
-			System.out.println(IncidentManagement.getIncident_Content());
-			System.out.println(IncidentManagement.getSupported_person_id());
-			System.out.println(IncidentManagement.getStatus());
+			//確認用sysout
+//			System.out.println(IncidentManagement.getIncident_id());
+//			System.out.println(IncidentManagement.getIncident_Name());
+//			System.out.println(IncidentManagement.getIncident_Content());
+//			System.out.println(IncidentManagement.getSupported_person_id());
+//			System.out.println(IncidentManagement.getStatus());
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setObject(1,IncidentManagement.getIncident_id());
 			stmt.setString(2,IncidentManagement.getIncident_Name());
@@ -120,19 +148,35 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 
 	@Override
 	public void update(IncidentManagement IncidentManagement) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
+		try(Connection con = ds.getConnection()){
+			String sql = "update incidentmanagement set incident_id=?, "
+					+ " incident_name=?, "
+					+ " incident_content=?, "
+					+ " update_time=now(), "
+					+ " status=? "
+					;
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setObject(1,IncidentManagement.getIncident_id() );
+			stmt.setString(2,IncidentManagement.getIncident_Name());
+			stmt.setString(3,IncidentManagement.getIncident_Content());
+			stmt.setString(4,IncidentManagement.getStatus());
+			stmt.executeUpdate();
+		}catch(Exception e) {
+			throw e;
+		}
 		
 	}
 
 	@Override
 	public void delete(IncidentManagement IncidentManagement) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
+
 		
 	}
 
 	//ResultSetからIncidentManagementオブジェクトへの変換
 	private IncidentManagement mapToIncident(ResultSet rs)throws Exception{
 			Integer id = (Integer)rs.getObject("id");
+			System.out.println(id);
 			Integer incident_id = (Integer)rs.getObject("incident_id");
 			System.out.println(incident_id);
 			String incident_Name = rs.getString("incident_Name");
