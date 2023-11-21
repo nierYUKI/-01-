@@ -47,10 +47,10 @@ public class UpdateIncidentServlet extends HttpServlet {
 		try {
 		// IDを元に1件分のインシデントデータを取得
 			//Getパラメータの取得
-			String strId = request.getParameter("id");
-			Integer id = Integer.parseInt(strId);
+//			String strId = request.getParameter("id");
+//			Integer id = Integer.parseInt(strId);
 		IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
-		IncidentManagement incident = incidentDao.findById(id);
+		IncidentManagement incident = incidentDao.findById(2);
 		
 		//フォーム初期表示用データ
 		request.setAttribute("incident_id",incident.getIncident_id());
