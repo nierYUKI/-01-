@@ -24,7 +24,11 @@
         <c:forEach items="${IncidentList}" var="IncidentManagement">
         <tr>
           <td><c:out value="${IncidentManagement.id}" /></td>
-          <td><c:out value="${IncidentManagement.incident_id}" /></td>
+          <%-- IncidentManagementDaoImplでResultSetからIncidentManagementオブジェクトへの変換の注意 --%>
+          <%-- domainで作成したクラスの変数の先頭文字が大文字でも、getter,setterで取得する際 --%>
+          <%-- 小文字で取得されるので、JSPファイルで指定する際は小文字で指定してあげる --%>
+          
+          <td><c:out value="${IncidentManagement.incidentId_Name}" /></td>
           <td><c:out value="${IncidentManagement.incident_Name}" /></td>
           <td><c:out value="${IncidentManagement.incident_Content}" /></td>
           <td><c:out value="${IncidentManagement.user_name}" /></td>

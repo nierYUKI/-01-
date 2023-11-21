@@ -22,7 +22,9 @@ public class IncidentManagement {
 	private String user_name;//インシデント作成者名をJSPで表示させる為に追加 
 	//Userの全ての情報が必要なら以下の情報でおｋ
 	//private User user;
-	//private String IncidentId_Name;//インシデントID名をJSPで表示させる為に追加
+	//一旦確認の為
+	private String IncidentId_Name;//インシデントID名をJSPで表示させる為に追加
+	//private ServiceManagment serviceManagment;
 	
 
 }
