@@ -13,28 +13,30 @@
 <table border="1">
 <tr>
 	<th>ID</th>
-	<th>インシデントID</th>
-	<th>インシデント名</th>
+	<th>インシデントシステム名</th>
 	<th>インシデント内容</th>
+	<%-- <th>インシデント対応</th>--%>
 	<th>インシデント作成者</th>
 	<th>インシデント作成時間</th>
-	<th>インシデント更新時間</th>
+	<%-- x<th>インシデント更新時間</th>--%>
 	<th>インシデントステータス</th>
 </tr>
         <c:forEach items="${IncidentList}" var="IncidentManagement">
         <tr>
           <td><c:out value="${IncidentManagement.id}" /></td>
+          
           <%-- IncidentManagementDaoImplでResultSetからIncidentManagementオブジェクトへの変換の注意 --%>
           <%-- domainで作成したクラスの変数の先頭文字が大文字でも、getter,setterで取得する際 --%>
           <%-- 小文字で取得されるので、JSPファイルで指定する際は小文字で指定してあげる --%>
+          <%-- JavaBeansの命名規則 --%>
           
           <td><c:out value="${IncidentManagement.incidentId_Name}" /></td>
           <td><c:out value="${IncidentManagement.incident_Name}" /></td>
-          <td><c:out value="${IncidentManagement.incident_Content}" /></td>
+          <%-- <td><c:out value="${IncidentManagement.incident_Content}" /></td>--%>
           <td><c:out value="${IncidentManagement.user_name}" /></td>
 
           <td><fmt:formatDate value="${IncidentManagement.creation_Time}" pattern="y年MM月dd日 HH:mm:ss" /></td>
-          <td><fmt:formatDate value="${IncidentManagement.update_time}" pattern="y年MM月dd日 HH:mm:ss" /></td>
+          <%-- <td><fmt:formatDate value="${IncidentManagement.update_time}" pattern="y年MM月dd日 HH:mm:ss" /></td> --%>
           <td><c:out value="${IncidentManagement.status}" /></td>
        </tr>
         </c:forEach>
