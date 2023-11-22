@@ -11,28 +11,33 @@
 <h1>インシデント編集</h1>
 <form action="" method="post">
 
-<label for="formIncident_id">インシデントID</label>
+<label for="formIncident_id">インシデントシステム名</label>
 <select  name="Incident_id" id="formIncident_id">
 
-<c:forEach items="${ServiceList }" var="ServiceManagment">
-<option value="<c:out value="${ ServiceManagment.serviceId}"/>">
-<c:out value="${incident_id }"/>
+<%--家でやる内容 --%>
+<c:forEach items="${ServiceList }" var="ServiceManagment" varStatus="vs">
+<option value="<c:out value="${serviceManagment.serviceId}"/>">
+<c:out value="${serviceManagment.serviceId == ${vs.count} ? 'selected' : ''}"/> >
+                <c:if test="${serviceManagment.serviceId eq incident.incident_id}"></c:if>
+                <c:out value="${ServiceManagment.serviceName}" />
 </option>
 </c:forEach>
 </select>
 
 <div></div>
-<label for="formIncident_Name">インシデント名</label>
+<label for="formIncident_Name">インシデント概要</label>
 <input type="text" name="Incident_Name" id="formIncident_Name"
- value="<c:out value="${incident_name }"/>" />
+ value="<c:out value="${incident_name }"/>"/>
 <div></div>
 
 <label for="formIncident_Content">インシデント内容</label>
-<input type="text" name="Incident_Content" id="formIncident_Content">
+<input type="text" name="Incident_Content" id="formIncident_Content"
+ value="<c:out value="${incident_content }"/>"/>
 <div></div>
 
 <label for="formgetStatus">ステータス</label>
-<input type="text" name="getStatus" id="formgetStatus">
+<input type="text" name="getStatus" id="formgetStatus"
+ value="<c:out value="${status}"/>"/>
 <div></div>
 
 </form>

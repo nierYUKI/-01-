@@ -84,10 +84,10 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 		
 		try(Connection con = ds.getConnection()){
 			String sql = " select *, user.name AS supported_person_id "
-					+ " from incidentmanagement "
-					+ " join user on incidentmanagement.supported_person_id = user.id "
-					+ " join servicemanagement on incidentmanagement.incident_id = servicemanagement.id "
-					+ " where incidentmanagement.id=?";
+					+ "	from incidentmanagement "
+					+ "	join user on incidentmanagement.supported_person_id = user.id "
+					+ "	join servicemanagement on incidentmanagement.incident_id = servicemanagement.id "
+					+ "	where incidentmanagement.id=?;";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setObject(1,id,Types.INTEGER);
 			ResultSet rs = stmt.executeQuery();
