@@ -16,14 +16,15 @@
 
 <c:forEach items="${ServiceList }" var="ServiceManagment">
 <option value="<c:out value="${ ServiceManagment.serviceId}"/>">
-<c:out value="${ServiceManagment.serviceName }"/>
+<c:out value="${incident_id }"/>
 </option>
 </c:forEach>
 </select>
 
 <div></div>
 <label for="formIncident_Name">インシデント名</label>
-<input type="text" name="Incident_Name" id="formIncident_Name">
+<input type="text" name="Incident_Name" id="formIncident_Name"
+ value="<c:out value="${incident_name }"/>" />
 <div></div>
 
 <label for="formIncident_Content">インシデント内容</label>

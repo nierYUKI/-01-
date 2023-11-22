@@ -66,7 +66,7 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				IncidentList.add(mapToIncident(rs));
+				IncidentList.add(mapToIncidentList(rs));
 		}
 			
 		}catch(Exception e) {
@@ -80,7 +80,7 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 	public IncidentManagement findById(Integer id) throws Exception {
 		// データ1件分を取得する
 		// 編集するインシデント内容を取得
-		IncidentManagement incident = null;
+		IncidentManagement incident =  new IncidentManagement() ;
 		
 		try(Connection con = ds.getConnection()){
 			String sql = " select *, user.name AS supported_person_id "
@@ -91,8 +91,8 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setObject(1,id,Types.INTEGER);
 			ResultSet rs = stmt.executeQuery();
-			if(rs.next() == true) {
-				incident = mapToIncident(rs);
+			if(rs.next()) {
+				incident = mapToIncidentList(rs);
 			}
 		}catch(Exception e) {
 			
@@ -174,11 +174,9 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 	}
 
 	//ResultSetからIncidentManagementオブジェクトへの変換
-	private IncidentManagement mapToIncident(ResultSet rs)throws Exception{
+	private IncidentManagement mapToIncidentList(ResultSet rs)throws Exception{
 			Integer id = (Integer)rs.getObject("id");
-			System.out.println(id);
 			Integer incident_id = (Integer)rs.getObject("incident_id");
-			System.out.println(incident_id);
 			String incident_Name = rs.getString("incident_Name");
 			String incident_Content = rs.getString("incident_Content");
 			Integer supported_person_id = (Integer)rs.getObject("supported_person_id");
@@ -188,7 +186,6 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 			
 		//インシデント一覧のインシデント作成者名を表示させる為、追加
 			String user_name = rs.getString("user.name");
-			
 			
 		//インシデント一覧のインシデントIDをインシデントサービス名を表示させる為、追加
 			String IncidentId_Name = rs.getString("servicemanagement.serviceName");

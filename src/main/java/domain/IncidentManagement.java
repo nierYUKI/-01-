@@ -10,7 +10,12 @@ import lombok.Data;
 @Data
 @Builder
 public class IncidentManagement {
-
+	
+	//11月22日11:55分IncidentManagementDaoImplのfindByIdの
+	//IncidentManagement incident =  new IncidentManagement() ;のエラー内容を解消する為にコンストラクタ追加
+	public IncidentManagement() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
 	private Integer id;//ID
 	private Integer incident_id;//インシデントID
 	private String incident_Name;//インシデント名
@@ -26,5 +31,4 @@ public class IncidentManagement {
 	private String IncidentId_Name;//インシデントID名をJSPで表示させる為に追加
 	//private ServiceManagment serviceManagment;
 	
-
 }

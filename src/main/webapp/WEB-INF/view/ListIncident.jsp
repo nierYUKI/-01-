@@ -38,6 +38,9 @@
           <td><fmt:formatDate value="${IncidentManagement.creation_Time}" pattern="y年MM月dd日 HH:mm:ss" /></td>
           <%-- <td><fmt:formatDate value="${IncidentManagement.update_time}" pattern="y年MM月dd日 HH:mm:ss" /></td> --%>
           <td><c:out value="${IncidentManagement.status}" /></td>
+          
+          <%--そもそもidが紐づいていない可能性を考慮して記載 --%>
+          <td><a href="updateIncident?id=<c:out value="${IncidentManagement.id}" />&incident_id=<c:out value="${IncidentManagement.incidentId_Name}" />">更新</a></td>
        </tr>
         </c:forEach>
 
