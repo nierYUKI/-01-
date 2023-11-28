@@ -5,36 +5,38 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
 <title>ログイン画面</title>
 </head>
 <body>
-<form action="" method="post">
-<h1>ログイン画面</h1>
+<div class="main">
+<form class="form1" action="" method="post">
+<h1 class="sign" align="center">ログイン画面</h1>
 
 
-<teble>
+
 <tr>
 	<td>
-	<p>名前
-	<input type="text" name="name">
-	</p>
+
+	<input type="text" name="name" class="un"  placeholder="name">
+
 	</td>
 	
-	<p>パスワード
+
 	<td>
-	<input type="password" name="password">
-	</p>
+	<input type="password" name="password" class="pass"  placeholder="Password">
+
 	</td>
 </tr>
 
-<input type="submit" value="ログイン">
-
-</teble>
+<input type="submit" id="submit" value="ログイン" class="submit" >
 
 
+
+<a href="userRegistration">アカウントが無い方は</a>
 
 
 </form>
-
+</div>
 </body>
 </html>

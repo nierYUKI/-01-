@@ -30,5 +30,7 @@
 
 </form>
 
+<a href="login">アカウントをお持ちの方は</a>
+
 </body>
 </html>
