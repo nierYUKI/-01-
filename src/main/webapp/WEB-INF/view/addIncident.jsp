@@ -12,7 +12,7 @@
 <h1>インシデント登録</h1>
 <form action="" method="post">
 
-<label for="formIncident_id">インシデントサービス名</label>
+<label for="formIncident_id">インシデントシステム名</label>
 <select  name="Incident_id" id="formIncident_id">
 
 <c:forEach items="${ServiceList }" var="ServiceManagment">

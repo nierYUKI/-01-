@@ -71,7 +71,48 @@ public class UpdateIncidentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 
+		//文字化け防止
+		request.setCharacterEncoding("UTF-8");
+		
+		//Getパラメータの取得
+		String strId = request.getParameter("id");
+		Integer id = Integer.parseInt(strId);
+
+
+		//jspファイルのname属性を変更して修正
+		String strincident_id = request.getParameter("incident_id2");
+		System.out.println(strincident_id);
+		Integer incident_id = Integer.parseInt(strincident_id);
+		
+		String incident_name = request.getParameter("Incident_Name");
+		String incident_content = request.getParameter("Incident_Content");
+		String status = request.getParameter("getStatus");
+		
+		
+		request.setAttribute("incident_id", incident_id);
+		request.setAttribute("incident_name",incident_name);
+		request.setAttribute("incident_content",incident_content);
+		request.setAttribute("status", status);
+		
+		IncidentManagement incidentManagement = new IncidentManagement();
+		incidentManagement.setId(id);
+		incidentManagement.setIncident_id(incident_id);
+		incidentManagement.setIncident_Name(incident_name);
+		incidentManagement.setIncident_Content(incident_content);
+		incidentManagement.setStatus(status);
+		
+		try {
+			//データの更新
+		
+		IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
+		incidentDao.update(incidentManagement);
+		
+		//更新完了ページへ画面遷移
+		request.getRequestDispatcher("/WEB-INF/view/UpdateIncidentDone.jsp").forward(request, response);
+		
+		}catch (Exception e) {
+			throw new ServletException(e);
+		}
 	}
 
 }

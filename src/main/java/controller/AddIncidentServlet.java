@@ -84,6 +84,7 @@ public class AddIncidentServlet extends HttpServlet {
 			incidentManagement.setStatus(getStatus);
 			IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
 			incidentDao.insert(incidentManagement);
+			
 
 			//DBに登録されるのを確認する為に、一覧にいく
 			response.sendRedirect(request.getContextPath() + "/ListIncident");

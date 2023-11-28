@@ -154,12 +154,14 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 					+ " incident_content=?, "
 					+ " update_time=now(), "
 					+ " status=? "
+					+ " where id =?"
 					;
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setObject(1,IncidentManagement.getIncident_id() );
 			stmt.setString(2,IncidentManagement.getIncident_Name());
 			stmt.setString(3,IncidentManagement.getIncident_Content());
 			stmt.setString(4,IncidentManagement.getStatus());
+			stmt.setObject(5,IncidentManagement.getId());
 			stmt.executeUpdate();
 		}catch(Exception e) {
 			throw e;
