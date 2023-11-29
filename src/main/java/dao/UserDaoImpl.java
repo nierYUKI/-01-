@@ -96,11 +96,39 @@ public class UserDaoImpl implements UserDao{
 		return UserList;
 		
 	}
+	/*	//新規アカウントを作成する際に所属部門の情報が欲しいため追加したプログラム11/29
+	 * これは間違え。WorkTableDaoを作成し、DaoFactoryにWorkTableDaoインターフェースを実装したクラスのインスタンスを返すメソッドを記載。
+	 * そこから所属部門を取得するプログラムを実装11/29 13:40
+		public List<WorkTable>findWorkAll() throws Exception{
+			List<WorkTable>WorkList = new ArrayList<>();
+			try(Connection con = ds.getConnection()){
+			String sql = " select * from worktable ";
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				WorkList.add(mapToWorkTable(rs));
+			}
+			}catch(Exception e) {
+	
+		}
+		return WorkList;
+		}
+		
+			//ResultSetからオブジェクトへの変換
+			private WorkTable mapToWorkTable(ResultSet rs) throws Exception {
+			Integer WorkId = (Integer)rs.getObject("id");
+			String WorkName = rs.getString("WorkName");
+			return new WorkTable(WorkId,WorkName);
+		}*/
+
 		private User mapToUserList(ResultSet rs)throws Exception{
 		Integer id =(Integer)rs.getObject("id");
 		String name = rs.getString("name");
 		String password = rs.getString("password");
 		String work_id = rs.getString("work_id");
+		
+		//String work_name = rs.getString("work_name");WorkTableDaoを実装しないで行った間違い11/29
 		
 		return new User(id,name,password, work_id);
 	}

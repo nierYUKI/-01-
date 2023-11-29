@@ -15,4 +15,6 @@ public class User {
 	private String password;//パスワード(ログイン)
 	private String work_id;//(所属部門)
 	
+	//private String work_name;//新規ユーザー登録する際にJSPに所属部門名を表示させる為に追加
+	
 }

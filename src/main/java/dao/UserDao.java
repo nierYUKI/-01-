@@ -18,4 +18,5 @@ public interface UserDao {
 	public List<User> findAll()
 			throws Exception;
 
+
 }

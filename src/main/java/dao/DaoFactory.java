@@ -33,4 +33,10 @@ public class DaoFactory {
 	public static ServiceManagmentDao createServiceManagmentDao() {
 		return new ServiceManagmentDaoImpl(getDataSource());
 	}
+
+	//WorkTableDao インターフェースを実装したクラスのインスタンスを返す。
+	public static WorkTableDao createWorkTableDao() {
+		
+		return new WorkTableDaoImpl(getDataSource());
+	}
 }

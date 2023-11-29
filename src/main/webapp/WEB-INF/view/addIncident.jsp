@@ -23,11 +23,12 @@
 
 </select>
 <div></div>
-<label for="formIncident_Name">インシデント概要</label>
-<input type="text" name="Incident_Name" id="formIncident_Name">
+
+<textarea name="Incident_Name" id="formIncident_Name" cols="30" rows="10">インシデント概要</textarea>
 <div></div>
-<label for="formIncident_Content">インシデント対応内容</label>
-<input type="text" name="Incident_Content" id="formIncident_Content">
+
+<textarea name="Incident_Content" id="formIncident_Content" cols="30" rows="10">インシデント対応内容</textarea>
+
 <div></div>
 <label for="formgetStatus">ステータス</label>
 <input type="text" name="getStatus" id="formgetStatus">
