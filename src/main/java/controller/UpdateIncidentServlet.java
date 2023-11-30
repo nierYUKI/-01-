@@ -26,6 +26,7 @@ public class UpdateIncidentServlet extends HttpServlet {
 	
 	private List<ServiceManagment>ServiceList;
 	private IncidentManagementDao incidentDao;
+	
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -52,11 +53,17 @@ public class UpdateIncidentServlet extends HttpServlet {
 		IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
 		IncidentManagement incident = incidentDao.findById(id);
 		
+
+	
+	
+		
 		//フォーム初期表示用データ
 		request.setAttribute("incident_id",incident.getIncident_id());
 		request.setAttribute("incident_name", incident.getIncident_Name());
 		request.setAttribute("incident_content",incident.getIncident_Content());
 		request.setAttribute("status",incident.getStatus());
+		//インシデント作成者を呼び出す11/30
+		request.setAttribute("supported_person_id",incident.getSupported_person_id());
 		
 		request.setAttribute("ServiceList", ServiceList);
 		
@@ -79,9 +86,15 @@ public class UpdateIncidentServlet extends HttpServlet {
 		Integer id = Integer.parseInt(strId);
 
 
-		//jspファイルのname属性を変更して修正
+		//ログインしているユーザーの情報を取得したい11/30
+//		Integer supported_person_id = Integer.parseInt(request.getParameter("supported_person_id"));
+//			System.out.println(supported_person_id +"無限の剣製");
+//		UserDao userDao = DaoFactory.createUserDao();
+//		User user = userDao.findAll();
+		
+		//jspファイルのname属性を変更して修正(incident_id2)原因は不明おそらく、name属性の名前被りかも？
 		String strincident_id = request.getParameter("incident_id2");
-		System.out.println(strincident_id);
+		//確認用System.out.println(strincident_id);
 		Integer incident_id = Integer.parseInt(strincident_id);
 		
 		String incident_name = request.getParameter("Incident_Name");

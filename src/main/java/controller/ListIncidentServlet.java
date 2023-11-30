@@ -33,7 +33,7 @@ public class ListIncidentServlet extends HttpServlet {
 		ServiceManagmentDao serviceDao = DaoFactory.createServiceManagmentDao();
 		List<ServiceManagment> ServiceList = serviceDao.findAll();
 		request.setAttribute("ServiceList", ServiceList);
-		System.out.println(ServiceList);
+		//確認用System.out.println(ServiceList);
 		
 		  //インシデント作成者を表示する処理
 		UserDao userDao = DaoFactory.createUserDao();

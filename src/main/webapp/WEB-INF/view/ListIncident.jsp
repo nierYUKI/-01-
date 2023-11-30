@@ -43,8 +43,10 @@
           <td><a href="updateIncident?id=<c:out value="${IncidentManagement.id}" />&incident_id=<c:out value="${IncidentManagement.incidentId_Name}" />">更新</a></td>
        </tr>
         </c:forEach>
-
+       
 </table>
+
+
 
 </body>
 </html>

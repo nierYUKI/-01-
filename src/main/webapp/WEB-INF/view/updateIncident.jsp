@@ -77,6 +77,14 @@
 			name="getStatus" id="formgetStatus"
 			value="<c:out value="${status}"/>" />
 		<div></div>
+		
+
+		<label for="formsupported_person_id">インシデント作成者</label> 
+		<input type="text"
+			name="supported_person_id" id="formsupported_person_id"
+			value="<c:out value="${user.name}"/>" />
+
+
 
 		<input type="submit" value="インシデントの内容を変更">
 
