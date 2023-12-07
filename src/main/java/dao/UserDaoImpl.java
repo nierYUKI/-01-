@@ -28,6 +28,7 @@ public class UserDaoImpl implements UserDao{
 		//パスワードのハッシュ化
 		String loginPass = user.getPassword();
 		String hashed = BCrypt.hashpw(user.getPassword(),BCrypt.gensalt());
+
 		
 		
 		

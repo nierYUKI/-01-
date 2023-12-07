@@ -49,6 +49,35 @@ public class UserRegistrationServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String workId = request.getParameter("workId");
 		
+		//バリデーションチェック
+		//エラーメッセージを格納する変数
+		String errorName = "";
+		String errorPassword = "";
+		
+		if(name.isBlank()) {
+			System.out.println("名前が未入力です");
+			errorName += "名前が未入力です";
+		}else if(name.length() >60) {
+			System.out.println("名前は60文字以内で入力してください");
+			errorName +="名前は60文字以内で入力してください";
+		}
+		
+		//パスワードチェック
+		if(password.isBlank()) {
+			System.out.println("passwordが未入力です");
+			errorPassword += "passwordが未入力です";
+		}else if(password.length() >80) {
+			System.out.println("passwordは80文字以内で入力してください");
+			errorPassword += "passwordは80文字以内で入力してください";
+		}
+		
+		//12/7追記chatGPT生成プログラム
+		if (!errorName.isEmpty() || !errorPassword.isEmpty()) {
+	    // エラーがある場合はエラーメッセージをセット。
+	    doGet(request,response);
+	    return;
+	}
+		
 		
 		//Daoを使いDB登録
 		UserDao dao = DaoFactory.createUserDao();
