@@ -16,6 +16,7 @@ import dao.IncidentManagementDao;
 import dao.ServiceManagmentDao;
 import domain.IncidentManagement;
 import domain.ServiceManagment;
+import domain.User;
 
 /**
  * Servlet implementation class UpdateIncidentServlet
@@ -26,6 +27,7 @@ public class UpdateIncidentServlet extends HttpServlet {
 	
 	private List<ServiceManagment>ServiceList;
 	private IncidentManagementDao incidentDao;
+
 	
 
 	/**
@@ -53,21 +55,47 @@ public class UpdateIncidentServlet extends HttpServlet {
 		IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
 		IncidentManagement incident = incidentDao.findById(id);
 		
-
-	
-	
+		 //12/6追記 ログインしているユーザーの情報を取得（仮のセッション属性名として"loggedInUser"を使用）
+    User loggedInUser = (User) request.getSession().getAttribute("user");
+    System.out.println(loggedInUser+"APEX");
+    //Integer loggedIn_User = Integer.parseInt(request.getParameter("loggedInUser"));
 		
+		//12/6追記 ログインしているユーザーとインシデント作成者が一緒じゃなければ更新出来ないようにする処理12/6
+		//12/7追記「supported_person_id」が既にListIncident.jspファイルにて、「詳細・更新」を送る際に使用しているので、
+    //supported_person_id2にしてインシデント作成者のID番号を渡してあげている処理
+    //ListIncident.jspファイルの詳細・更新のリンクをクリックすると
+    //&supported_person_id2=<c:out value="${IncidentManagement.supported_person_id}"/>の部分で
+    //インシデント作成者のID番号を渡している
+		Integer supported_person_id2 = Integer.parseInt(request.getParameter("supported_person_id2"));
+		System.out.println(supported_person_id2+"衛宮さんちの今日のごはん");
+
+		
+
 		//フォーム初期表示用データ
 		request.setAttribute("incident_id",incident.getIncident_id());
 		request.setAttribute("incident_name", incident.getIncident_Name());
 		request.setAttribute("incident_content",incident.getIncident_Content());
 		request.setAttribute("status",incident.getStatus());
-		//インシデント作成者を呼び出す11/30
-		request.setAttribute("supported_person_id",incident.getSupported_person_id());
+		
+		//11/30追記 インシデント作成者名をupdateIncident.jspで表示する為
+		//IncidentManagement incident = incidentDao.findById(id);でUserテーブルも取得しているメソッド「findById」があったので、
+		request.setAttribute("user_name",incident.getUser_name());//再利用して、インシデント作成者の名前を取得している
+		
+		//12/6追記 インシデント作成者とログインしているユーザーが一緒じゃなかったら更新不可にする為、インシデント作成者のID番号を取得する為。
+		request.setAttribute("supported_person_id", incident.getSupported_person_id());
+		
+		//12/5追記 インシデント作成時間も取得する
+		request.setAttribute("Creation_Time",incident.getCreation_Time());
+		
+		//12/5追記 インシデント更新時間も取得する
+		request.setAttribute("update_time", incident.getUpdate_time());
 		
 		request.setAttribute("ServiceList", ServiceList);
-		
+		if(loggedInUser.getId() == supported_person_id2 ) {
 		request.getRequestDispatcher("/WEB-INF/view/updateIncident.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/WEB-INF/view/updateIncident_view.jsp").forward(request, response);
+		}
 		
 		} catch (Exception e) {
 			throw new ServletException(e);
@@ -81,16 +109,11 @@ public class UpdateIncidentServlet extends HttpServlet {
 		//文字化け防止
 		request.setCharacterEncoding("UTF-8");
 		
+		
 		//Getパラメータの取得
 		String strId = request.getParameter("id");
 		Integer id = Integer.parseInt(strId);
-
-
-		//ログインしているユーザーの情報を取得したい11/30
-//		Integer supported_person_id = Integer.parseInt(request.getParameter("supported_person_id"));
-//			System.out.println(supported_person_id +"無限の剣製");
-//		UserDao userDao = DaoFactory.createUserDao();
-//		User user = userDao.findAll();
+		
 		
 		//jspファイルのname属性を変更して修正(incident_id2)原因は不明おそらく、name属性の名前被りかも？
 		String strincident_id = request.getParameter("incident_id2");
@@ -116,7 +139,7 @@ public class UpdateIncidentServlet extends HttpServlet {
 		
 		try {
 			//データの更新
-		
+
 		IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
 		incidentDao.update(incidentManagement);
 		

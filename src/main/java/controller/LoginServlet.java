@@ -37,8 +37,7 @@ public class LoginServlet extends HttpServlet {
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
 			//入力値の確認用
-			//System.out.println(name);
-			//System.out.println(password);
+
 			UserDao userDao = DaoFactory.createUserDao();
 			//Userパッケージを取得して、ユーザーの全ての情報を取得する
 			User user = userDao.findByLoginAndPass(name, password);
