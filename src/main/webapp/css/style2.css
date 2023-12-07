@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+body {
+	background-color: #ffd19a;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.taitle{
+	margin-left:1%;
+}
+
+
+
+table {
+  border-collapse: collapse;
+  border: 2px solid #000;
+  background-color: #FFFFFF;
+  width: 100%; /* 幅を100%に変更 */
+  height: 800px;
+  margin: 0 auto;/* 左右のマージンを自動で調整して中央に配置 */
+  
+  white-space: nowrap; /* テキストを折り返さないようにする */
+  
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+  
+}
+ 
+tr:hover {
+background: #cae4ee;
+}
+
+
+th{
+
+padding: 10px;
+border: 1px solid #333;
+  color: #fff;
+
+padding: 8px 15px;
+
+background: #258;
+
+background:-moz-linear-gradient(rgba(34,85,136,0.7), rgba(34,85,136,0.9) 50%);
+
+background:-webkit-gradient(linear, 100% 0%, 100% 50%, from(rgba(34,85,136,0.7)), to(rgba(34,85,136,0.9)));
+
+font-weight: bold;
+
+border-left:1px solid #258;
+
+border-top:1px solid #258;
+
+border-bottom:1px solid #258;
+
+line-height: 120%;
+
+text-align: center;
+
+text-shadow:0 -1px 0 rgba(34,85,136,0.9);
+
+box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+
+
+}
+
+
+ td{
+
+padding: 10px;
+border: 1px solid #333;
+
+}
+
+.textarea{
+	width: 700px;  /* 横幅 */
+	height: 300px; /* 高さ */
+}
+
+a.navbar-brand {
+	text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+	text-decoration: none;
+	
+	cursor: pointer;
+	border-radius: 1em;
+	color: #fff;
+	background: linear-gradient(to right, #ffb257, #ffb257);
+	border: 0;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-family: 'Ubuntu', sans-serif;
+
+	font-size: 15px;
+	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+	
+}
+
+
+.submit {
+	cursor: pointer;
+	border-radius: 5em;
+	color: #fff;
+	background: linear-gradient(to right, #ffb257, #ffb257);
+	border: 0;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-family: 'Ubuntu', sans-serif;
+	margin-left: 10%;
+	margin-right: 4%;
+	font-size: 15px;
+	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.sign {
+	padding-top: 10px;
+	color: #fa9f32;
+	font-family: "ＭＳ ゴシック", sans-serif;
+	font-weight: bold;
+	font-size: 50px;
+	
+}
+
+
+nav{
+text-align: center;
+}
+nav ul{
+margin: 0 ;
+padding: 0 ;
+}
+nav ul li{
+list-style: none;
+display: inline-block;
+width: 18%;
+min-width: 90px;
+}
+nav ul li a{
+text-decoration: none;
+color: #333;
+}
+nav ul li.current a{
+color: #F33135;
+}
+nav ul li a:hover{
+color: #E7DA66;
+}
+
+
+
+.incident {
+	cursor: pointer;
+	border-radius: 5em;
+	color: #fff;
+	background: linear-gradient(to right, #ffb257, #ffb257);
+	border: 0;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-family: 'Ubuntu', sans-serif;
+	margin-left: 30%;
+	margin-right: 4%;
+	font-size: 25px;
+	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+td a.update{
+	margin: 0 auto;
+	border-radius: 3em;
+
+	text-shadow: 0px 0px 2px rgba(117, 117, 117, 0.12);
+	text-decoration: none;
+	
+	cursor: pointer;
+	color: #fff;
+	background: linear-gradient(to right, #ffb257, #ffb257);
+	border: 0;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	font-family: 'Ubuntu', sans-serif;
+
+
+	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}

@@ -14,7 +14,7 @@
 <form action="" method="post">
 
 
-<input type="text" name="name" class="un" placeholder="name">
+<input type="text" name="name" class="un" placeholder="例:山田太郎">
 
 
 

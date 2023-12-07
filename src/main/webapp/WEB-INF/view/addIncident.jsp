@@ -7,13 +7,24 @@
 <head>
 <meta charset="UTF-8">
 <title>インシデント登録</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/style3.css" rel="stylesheet" />
 </head>
 <body>
-<h1>インシデント登録</h1>
-<form action="" method="post">
+<c:import url="parts/header.jsp" />
 
-<label for="formIncident_id">インシデントシステム名</label>
-<select  name="Incident_id" id="formIncident_id">
+
+
+<h1 class="sign" align="center">インシデント登録</h1>
+
+<form action="" method="post">
+     
+<table>
+<tr>
+<th>インシデントシステム名</th>
+
+
+<td><select  name="Incident_id" id="formIncident_id" class="form-control">
 
 <c:forEach items="${ServiceList }" var="ServiceManagment">
 <option value="<c:out value="${ ServiceManagment.serviceId}"/>">
@@ -21,27 +32,49 @@
 </option>
 </c:forEach>
 
-</select>
-<div></div>
+</select></td>
 
-<textarea name="Incident_Name" id="formIncident_Name" cols="30" rows="10">インシデント概要</textarea>
-<div></div>
+<tr>
 
-<textarea name="Incident_Content" id="formIncident_Content" cols="30" rows="10">インシデント対応内容</textarea>
+<th>インシデント概要</th>
+<td><textarea name="Incident_Name" class="textarea" placeholder="例:アプリが動かない&ネットに繋がらない等" id="formIncident_Name" cols="30" rows="10"></textarea></td>
 
-<div></div>
-<label for="formgetStatus">ステータス</label>
-<input type="text" name="getStatus" id="formgetStatus">
-<div></div>
+</tr>
 
+<tr>
+<th>インシデント対応内容</th> 
+<td><textarea name="Incident_Content" class="textarea" placeholder="例:アプリ再インストール&PC再起動等" id="formIncident_Content" cols="30" rows="10"></textarea></td> 
 
-<label for="formsupported_person_id">${user.name}</label>
+</tr>
 
-<input type="hidden" name="supported_person_id" id="formsupported_person_id" value="<c:out value="${user.id}"/>">
-<input type="submit" value="新規登録">
+<tr>
+<th>ステータス</th>
+
+<td><select name="getStatus" class="form-control" id="formgetStatus">
+
+	<option value="受付">受付</option>
+	<option value="対応中">対応中</option>
+	<option value="対応完了">対応完了</option>
+	<option value="お客様対応待ち">お客様対応待ち</option>
+
+</select></td>
+</tr>
+
+<tr>
+<th>インシデント作成者</th>
+<td><label for="formsupported_person_id">${user.name}</label>
+<input type="hidden" name="supported_person_id" id="formsupported_person_id" value="<c:out value="${user.id}"/>"></td>
+</tr>
+<tr>
+<th>インシデント新規登録</th>
+<td><input type="submit" class="incident" value="新規登録"></td></tr>
+</table>
+
 </form>
 
-<a href="logout">ログアウトする</a>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
 
 </body>
 </html>

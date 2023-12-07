@@ -6,12 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>インシデント編集</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/style3.css">
 </head>
+<c:import url="parts/header.jsp" />
 <body>
-	<h1>インシデント編集</h1>
+	<h1 class="sign" align="center">インシデント編集</h1>
+
 	<form action="" method="post">
 
-		<label for="formIncident_id">インシデントシステム名</label>
+<table>
+<tr>
+<th>インシデントシステム名</th>
+
 		<%-- <select name="incident_id2" id="formIncident_id">
 			<option value="1" <c:out value="${incident_id == 1 ? 'selected' : ''}" />>
 ネットワークエラー
@@ -51,7 +58,7 @@
 			</c:forEach>
 		</select> --%>
 		
-		<select name="incident_id2" id="">
+		<td><select name="incident_id2" id="">
 			<c:forEach items="${ServiceList }" var="ServiceManagment"
 				varStatus="vs">
 <option value="<c:out value="${ServiceManagment.serviceId}"/>" <c:out value="${ServiceManagment.serviceId == incident_id ? 'selected' : ''}"/>>
@@ -60,38 +67,57 @@
 
 				</option>
 			</c:forEach>
-</select>
+</select></td>
 
-		<div></div>
-		<label for="formIncident_Name">インシデント概要</label> <input type="text"
-			name="Incident_Name" id="formIncident_Name"
-			value="<c:out value="${incident_name }"/>" />
-		<div></div>
+<tr>
+<th>インシデント概要</th>
+<td><textarea name="Incident_Name" class="textarea" id="formIncident_Name" cols="30" rows="10">
+<c:out value="${incident_name }"/>
+</textarea></td>
+</tr>
 
-		<label for="formIncident_Content">インシデント内容</label> <input type="text"
-			name="Incident_Content" id="formIncident_Content"
-			value="<c:out value="${incident_content }"/>" />
-		<div></div>
+<tr>
+<th>インシデント対応内容</th>
+<td><textarea name="Incident_Content" class="textarea" id="formIncident_Content" cols="30" rows="10"><c:out value="${incident_content }"/></textarea></td>
+</tr>
 
-		<label for="formgetStatus">ステータス</label> <input type="text"
-			name="getStatus" id="formgetStatus"
-			value="<c:out value="${status}"/>" />
-		<div></div>
+<tr>
+<th>インシデント作成時間</th>
+<td><fmt:formatDate  value="${Creation_Time}" pattern="y年MM月dd日 HH:mm:ss" /></td>
+</tr>
+
+<tr>
+<th>インシデント更新時間</th>
+<td><fmt:formatDate  value="${update_time}" pattern="y年MM月dd日 HH:mm:ss" /></td>
+</tr>
+
+<tr>
+<th>ステータス</th>
+<td><select name="getStatus" id="formgetStatus">
+
+    <option value="受付" <c:if test="${status eq '受付'}">selected</c:if>>受付</option>
+    <option value="対応中" <c:if test="${status eq '対応中'}">selected</c:if>>対応中</option>
+    <option value="対応完了" <c:if test="${status eq '対応完了'}">selected</c:if>>対応完了</option>
+    <option value="お客様対応待ち" <c:if test="${status eq 'お客様対応待ち'}">selected</c:if>>お客様対応待ち</option>
+
+</select></td>
+</tr>
+
+<tr>
+<th>インシデント作成者</th>
+<td><label for="formsupported_person_id">${user_name}</label>
+</tr>
+
+<tr>
+<th>インシデント内容変更</th>
+<td><input type="submit" class="update" value="インシデントの内容を変更"></td>
+</tr>
 		
-
-		<label for="formsupported_person_id">インシデント作成者</label> 
-		<input type="text"
-			name="supported_person_id" id="formsupported_person_id"
-			value="<c:out value="${user.name}"/>" />
-
-
-
-		<input type="submit" value="インシデントの内容を変更">
-
-		<div></div>
-		<a href="ListIncident">インシデント一覧へ戻る</a>
-
+</table>
 	</form>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
 
 </body>
 </html>
