@@ -71,6 +71,10 @@ public class UserRegistrationServlet extends HttpServlet {
 			errorPassword += "passwordは80文字以内で入力してください";
 		}
 		
+		//エラーメッセージをリクエストスコープに格納
+		request.setAttribute("errorName", errorName);
+		request.setAttribute("errorPassword", errorPassword);
+		
 		//12/7追記chatGPT生成プログラム
 		if (!errorName.isEmpty() || !errorPassword.isEmpty()) {
 	    // エラーがある場合はエラーメッセージをセット。

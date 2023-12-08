@@ -8,14 +8,14 @@ body {
 .main {
 	background-color: #FFFFFF;
 	width: 600px;
-	height: 400px;
+	height: 500px;
 	margin: 7em auto;
 	border-radius: 1.5em;
 	box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
 }
 
 .sign {
-	padding-top: 40px;
+	padding-top: 30px;
 	color: #fa9f32;
 	font-family: 'Ubuntu', sans-serif;
 	font-weight: bold;
@@ -35,10 +35,10 @@ body {
 	outline: none;
 	box-sizing: border-box;
 	border: 2px solid rgba(0, 0, 0, 0.02);
-	margin-bottom: 50px;
 	margin-left: 65px;
 	text-align: center;
-	margin-bottom: 27px;
+	margin-bottom: 5px;
+	margin-top: 20px;
 	font-family: 'Ubuntu', sans-serif;
 }
 
@@ -59,10 +59,10 @@ form.form1 {
 	outline: none;
 	box-sizing: border-box;
 	border: 2px solid rgba(0, 0, 0, 0.02);
-	margin-bottom: 50px;
 	margin-left: 65px;
 	text-align: center;
-	margin-bottom: 27px;
+	margin-bottom: 5px;
+	margin-top: 20px;
 	font-family: 'Ubuntu', sans-serif;
 }
 
@@ -79,10 +79,10 @@ form.form1 {
 	outline: none;
 	box-sizing: border-box;
 	border: 2px solid rgba(0, 0, 0, 0.02);
-	margin-bottom: 50px;
 	margin-left: 65px;
 	text-align: center;
 	margin-bottom: 27px;
+	margin-top: 20px;
 	font-family: 'Ubuntu', sans-serif;
 }
 
@@ -103,6 +103,7 @@ form.form1 {
 	font-family: 'Ubuntu', sans-serif;
 	margin-left: 10%;
 	margin-right: 4%;
+	margin-top: 20px;
 	font-size: 15px;
 	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
@@ -138,4 +139,10 @@ a {
 @media(max-width:600px){
 	.main {
 		border-radius: 0px;
+}
+}
+p{
+
+text-align: center;
+  color: red;
 }

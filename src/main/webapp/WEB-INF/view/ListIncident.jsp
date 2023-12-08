@@ -48,7 +48,8 @@
           <%-- <td><fmt:formatDate value="${IncidentManagement.update_time}" pattern="y年MM月dd日 HH:mm:ss" /></td> --%>
           <td><c:out value="${IncidentManagement.status}" /></td>
           
-          <%--そもそもidが紐づいていない可能性を考慮して記載 --%>
+          <%-- 一覧の中から選択したインシデントIDの値、インシデント作成者の名前を取得する為、「supported_person_id」を渡して、名前を表示させている。--%>
+          <%-- ログインしているユーザーとインシデント作成者が違う場合、更新処理を行わせない為「supported_person_id2」でインシデント作成者の番号を取得させている。 --%>
           <td><a class="update" href="updateIncident?id=<c:out value="${IncidentManagement.id}" />&supported_person_id=<c:out value="${IncidentManagement.user_name}"/>&supported_person_id2=<c:out value="${IncidentManagement.supported_person_id}"/>">詳細・更新</a></td>
        </tr>
         </c:forEach>

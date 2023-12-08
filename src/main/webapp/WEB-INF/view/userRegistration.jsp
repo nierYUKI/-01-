@@ -5,6 +5,8 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<%-- ブラウザのCSSスタイルを初期化 --%>
+<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
 <link rel="stylesheet" href="css/style.css">
 <title>新規ユーザー登録</title>
 </head>
@@ -15,13 +17,20 @@
 
 
 <input type="text" name="name" class="un" placeholder="例:山田太郎">
+<%-- 名前のエラーメッセージ表示 --%>
+<c:if test="${not empty errorName }">
+<p class="error"><c:out value="${errorName }"/></p>
+</c:if>
 
 
+<input type="password" name="password" class="pass" placeholder="password">
+<%-- パスワードのエラーメッセージ表示 --%>
+<c:if test="${not empty errorPassword }">
+<p class="error">${errorPassword }</p>
+</c:if>
 
-<input type="text" name="password" class="pass" placeholder="password">
 
-
-<select name="workId" id=""class="department" placeholder="所属部門">
+<select name="workId" id=""class="department" >
 <c:forEach items="${WorkList }" var="WorkTable">
 <option value="<c:out value="${ WorkTable.workId}"/>"><%-- domainで変数宣言した同じ文字列を使用すること(先頭文字の大文字小文字に気を付けてゲッターセッターで取得する際に小文字変換されるからJSPでは先頭文字を小文字にする) --%>
 <c:out value="${WorkTable.workName}"/><%-- domainで変数宣言した同じ文字列を使用すること(先頭文字の大文字小文字に気を付けてゲッターセッターで取得する際に小文字変換されるからJSPでは先頭文字を小文字にする) --%>
@@ -38,6 +47,14 @@
 <a href="login">アカウントをお持ちの方は</a>
 </form>
 </div>
+
+<script src="js/jquery-3.6.0.min.js"></script>
+
+<script>
+
+function 
+
+</script>
 
 
 </body>
