@@ -21,6 +21,7 @@
 	<input type="text" name="name" class="un"  placeholder="name">
 
 	</td>
+
 	
 
 	<td>
@@ -29,12 +30,36 @@
 	</td>
 </tr>
 
+	<c:if test="${not empty error}">
+	<p class="error">${error}</p>
+	</c:if>
+
 <input type="submit" id="submit" value="ログイン" class="submit" >
 
+<%--エラーメッセージの処理 --%>
 
+<script>
+<%--  ページが読み込まれた後に実行されるコード --%>
+<%--chatGPT生成プログラム --%>
+window.onload = function() {
+	  var fields = document.querySelectorAll('.un, .pass');
+
+	  fields.forEach(function(field) {
+	    field.addEventListener('focus', function() {
+	      var errorMessage = document.querySelector('.error');
+	      if (errorMessage) {
+	        errorMessage.style.display = 'none';
+	      }
+	    });
+	  });
+	};
+
+	
+</script>
 
 <a href="userRegistration">アカウントが無い方は</a>
 
+<script src="js/jquery-3.6.0.min.js"></script>
 
 </form>
 </div>

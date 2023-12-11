@@ -19,15 +19,42 @@
 <input type="text" name="name" class="un" placeholder="例:山田太郎">
 <%-- 名前のエラーメッセージ表示 --%>
 <c:if test="${not empty errorName }">
-<p class="error"><c:out value="${errorName }"/></p>
+<p class="error-name"><c:out value="${errorName }"/></p>
 </c:if>
 
 
 <input type="password" name="password" class="pass" placeholder="password">
 <%-- パスワードのエラーメッセージ表示 --%>
 <c:if test="${not empty errorPassword }">
-<p class="error">${errorPassword }</p>
+<p class="error-password">${errorPassword }</p>
 </c:if>
+
+<script>
+<%--chatGPT生成プログラム --%>
+  <%--  ページが読み込まれた後に実行されるコード --%>
+  window.onload = function() {
+	  <%-- ユーザー名の入力フィールドにフォーカスが当たった時の処理 --%>
+    var usernameField = document.querySelector('.un');
+    usernameField.addEventListener('focus', function() {
+    	<%-- エラーメッセージを非表示にする --%>
+      var errorMessage = document.querySelector('.error-name');
+      if (errorMessage) {
+        errorMessage.style.display = 'none';
+      }
+    });
+
+    <%-- パスワードの入力フィールドにフォーカスが当たった時の処理 --%>
+    var passwordField = document.querySelector('.pass');
+    passwordField.addEventListener('focus', function() {
+    <%-- エラーメッセージを非表示にする --%>
+      var errorMessage = document.querySelector('.error-password');
+      if (errorMessage) {
+        errorMessage.style.display = 'none';
+      }
+    });
+  };
+</script>
+
 
 
 <select name="workId" id=""class="department" >
@@ -49,12 +76,6 @@
 </div>
 
 <script src="js/jquery-3.6.0.min.js"></script>
-
-<script>
-
-function 
-
-</script>
 
 
 </body>
