@@ -46,6 +46,7 @@ public class ListIncidentServlet extends HttpServlet {
 			request.setAttribute("IncidentList", IncidentList);
 		//IncidentListの取得確認
 			//System.out.println(IncidentList);
+			
 			request.getRequestDispatcher("/WEB-INF/view/ListIncident.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
@@ -57,8 +58,36 @@ public class ListIncidentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//文字化け防止
+		request.setCharacterEncoding("UTF-8");
+		
+
+		//インシデント一覧からインシデントIDとインシデント作成者から検索する機能
+		try {
+    Integer incident_id = Integer.parseInt(request.getParameter("incident_id"));
+    Integer supported_person_id = Integer.parseInt(request.getParameter("supported_person_id"));
+    
+    IncidentManagementDao incidentDao = DaoFactory.createIncidentDao();
+
+    System.out.println(incident_id);
+    System.out.println(supported_person_id);
+		List<IncidentManagement>IncidentList = incidentDao.findAll();
+
+    request.setAttribute("IncidentList", IncidentList);
+    IncidentManagement foundIncident = incidentDao.search(incident_id, supported_person_id);
+    request.setAttribute("foundIncident", foundIncident);
+    request.getRequestDispatcher("/WEB-INF/view/ListIncident.jsp").forward(request, response);
+} catch (Exception e) {
+    e.printStackTrace();
+    // エラー処理
+}
+
+		
+		//ログアウト処理
+//		HttpSession session = request.getSession();
+//		session.invalidate();
+//		response
+//		.sendRedirect(request.getContextPath() + "/login");
 	}
 
 }

@@ -57,13 +57,8 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 					+ " join servicemanagement on incidentmanagement.incident_id = servicemanagement.id "
 					;
 			
-				//String sql = "select * from incidentManagement";
-				
-			
-//			String sql = " select worktable.name as worktable_name from user"
-//					+ " join worktable on user.work_id = worktable.work_id"
-//					+ " order by user.id ";
 			PreparedStatement stmt = con.prepareStatement(sql);
+			
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				IncidentList.add(mapToIncidentList(rs));
@@ -75,6 +70,7 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 		return IncidentList;
 	}
 
+	
 	
 	@Override
 	public IncidentManagement findById(Integer id) throws Exception {
@@ -98,6 +94,30 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 			
 		}
 		return incident;
+	}
+	
+	//データ検索機能の追加12/22
+	@Override
+	public IncidentManagement search(Integer incident_id, Integer supported_person_id) throws Exception {
+		IncidentManagement incident =  new IncidentManagement() ;
+		try(Connection con = ds.getConnection()){
+		String sql = " select *, user.name AS supported_person_id "
+				+ "	from incidentmanagement "
+				+ "	join user on incidentmanagement.supported_person_id = user.id "
+				+ "	join servicemanagement on incidentmanagement.incident_id = servicemanagement.id "
+				+ "	where incidentmanagement.incident_id=? or incidentmanagement.supported_person_id = ?;";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.setObject(1,incident_id,Types.INTEGER);
+		stmt.setObject(2,supported_person_id,Types.INTEGER);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			incident = mapToIncidentList(rs);
+		}
+		}catch(Exception e) {
+
+		}
+		return incident;
+
 	}
 	
 	/*
@@ -196,6 +216,8 @@ public class IncidentManagementDaoImpl implements IncidentManagementDao {
 		return new IncidentManagement(id,incident_id,incident_Name,incident_Content,supported_person_id,Creation_Time,update_time,Status,user_name,IncidentId_Name);
 		
 	}
+
+
 
 	
 }

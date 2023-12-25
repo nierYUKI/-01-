@@ -14,6 +14,9 @@ public interface IncidentManagementDao {
 	//servicemanagement テーブル内の全ての情報を取得する。
 	public List<ServiceManagment>findall()throws Exception;
 	
+	//incidentomanagement テーブル内を検索した情報を取得する。12/18追加
+	public IncidentManagement search(Integer incident_id, Integer supported_person_id) throws Exception;
+	
 	//指定したid のインシデント情報を取得する。
 	public IncidentManagement findById(Integer id)throws Exception;
 	
@@ -25,5 +28,6 @@ public interface IncidentManagementDao {
 	
 	//指定したインシデント情報をincidentmanagement テーブルから削除する。
 	public void delete(IncidentManagement item)throws Exception;
+
 
 }

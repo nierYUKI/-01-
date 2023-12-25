@@ -17,6 +17,13 @@
 <h1 class="taitle">インシデント一覧</h1>
   <div class="row">
     <div class="col-md-12">
+	<%--<
+<form method="post" action="ListIncident">
+    <input type="search" name="incident_id" placeholder="インシデントシステム名">
+    <input type="search" name="supported_person_id" placeholder="インシデント作成者名">
+    <input type="submit" value="検索">
+</form>
+--%>
 
 <table >
 <tr>

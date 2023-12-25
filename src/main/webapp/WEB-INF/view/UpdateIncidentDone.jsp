@@ -6,10 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>編集完了</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/style2.css">
 </head>
 <body>
-<h1>編集完了</h1>
-<p>編集が完了しました。</p>
-<a href="ListIncident">インシデント一覧へ戻る</a>
+<c:import url="parts/header.jsp" />
+<h1 class="sign" align="center">編集が完了しました</h1>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
 </body>
 </html>

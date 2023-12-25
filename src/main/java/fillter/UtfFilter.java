@@ -12,18 +12,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 
 /**
- * Servlet Filter implementation class UpdateIncidentFillter
+ * Servlet Filter implementation class UtfFilter
  */
-@WebFilter("/updateIncident")
-public class UpdateIncidentFillter extends HttpFilter implements Filter {
-       
-    /**
-     * @see HttpFilter#HttpFilter()
-     */
-    public UpdateIncidentFillter() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+@WebFilter("/*")
+public class UtfFilter extends HttpFilter implements Filter {
 
 	/**
 	 * @see Filter#destroy()
@@ -36,8 +28,9 @@ public class UpdateIncidentFillter extends HttpFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
+		// 文字コードの設定
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 
 		// pass the request along the filter chain
 		chain.doFilter(request, response);

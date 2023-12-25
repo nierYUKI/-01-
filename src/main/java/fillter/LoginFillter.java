@@ -17,7 +17,8 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginFillter
  */
-@WebFilter("/addIncident")
+@WebFilter(urlPatterns={"/addIncident","/ListIncident","/updateIncident"})
+//@WebFilter("/addIncident")
 public class LoginFillter extends HttpFilter implements Filter {
        
     /**
@@ -45,8 +46,7 @@ public class LoginFillter extends HttpFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
 
-		
-		
+	
 		//セッションに"user"が存在するかチェック
 		if(session.getAttribute("user") == null) {
 			//存在しなければLoginページへリダイレクト

@@ -17,7 +17,7 @@
 <img src="image/animal1.jpg" alt="" class="keyframe2 animation">
 <a class="news-banner" href="login">
   <div class="news-banner__content">
-    <p>今日もお疲れ様でした。</p>
+    <p class="oo">クリスマスプレゼントください</p>
   </div>
 </a>
 
